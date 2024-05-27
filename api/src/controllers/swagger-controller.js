@@ -8,7 +8,7 @@ const swaggerDefinition = {
     title: "OAuth2 Digimon API",
     version: "1.0.0",
     description: "API de Digimon desenvolvida pelo Grupo02 de Desenvolvimento Web II",
-    contact: { name: "inf-21-dw2-g02" },
+    contact: { name: "inf-23-dw2-g02" },
   },
   servers: [{ url: "http://localhost:" + config.port }],
   security: [
