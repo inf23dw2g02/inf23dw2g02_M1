@@ -27,6 +27,7 @@ const swaggerDefinition = {
             description: "Number of Digimon model instances",
           },
         },
+        "x-swagger-router-controller": "DigimonController",
       },
     },
     "/Digimon": {
@@ -290,6 +291,7 @@ const swaggerDefinition = {
             description: "Number of Trainer model instances",
           },
         },
+        "x-swagger-router-controller": "TrainerController",
       },
     },
     "/Trainer": {
@@ -545,6 +547,7 @@ const swaggerDefinition = {
             description: "Number of Tipo model instances",
           },
         },
+        "x-swagger-router-controller": "TipoController",
       },
     },
     "/Tipo": {
@@ -811,6 +814,7 @@ const swaggerDefinition = {
             description: "Number of Battles model instances",
           },
         },
+        "x-swagger-router-controller": "BattlesController",
       },
     },
     "/Battles": {
@@ -1078,6 +1082,7 @@ const swaggerDefinition = {
             description: "Number of Teams model instances",
           },
         },
+        "x-swagger-router-controller": "TeamsController",
       },
     },
     "/Teams": {
@@ -1393,9 +1398,7 @@ const swaggerDefinition = {
     schemas: {
       Trainer: {
         title: "Trainer",
-        required: [
-          "nome",
-        ],
+        required: ["nome"],
         type: "object",
         properties: {
           id_trainer: {
@@ -1414,7 +1417,7 @@ const swaggerDefinition = {
       },
       Digimon: {
         title: "Digimon",
-        required: ["nome"], // Assuming 'nome' and 'tipo1' are required fields
+        required: ["nome", "tipo1"],
         type: "object",
         properties: {
           id_digimon: {
@@ -1431,7 +1434,7 @@ const swaggerDefinition = {
           tipo2: {
             type: "integer",
             format: "int64",
-            nullable: true // Assuming 'tipo2' can be null if not applicable
+            nullable: true
           }
         },
         additionalProperties: false,
@@ -1463,7 +1466,7 @@ const swaggerDefinition = {
       },
       Battles: {
         title: "Battles",
-        required: ["id_trainer1", "id_trainer2", "id_digimon1", "id_digimon2", "winner" ,"data"],
+        required: ["id_trainer1", "id_trainer2", "id_digimon1", "id_digimon2", "winner", "data"],
         type: "object",
         properties: {
           id_Battles: {
@@ -1483,7 +1486,7 @@ const swaggerDefinition = {
             format: "int64",
           },
           id_digimon2: {
-            type : "integer",
+            type: "integer",
             format: "int64",
           },
           winner: {
@@ -1503,7 +1506,6 @@ const swaggerDefinition = {
           id_digimon2: 2,
           winner: 1,
           data: "2024-05-05 18:00:00",
-         
         },
       },
       Digimon_response: {
@@ -1535,6 +1537,7 @@ const swaggerDefinition = {
         },
       },
     },
+    examples: {
       TrainerExample01: {
         value: {
           id_trainer: 1,
@@ -1641,51 +1644,52 @@ const swaggerDefinition = {
           nome: "Teams",
         },
       },
-			Battles_response: {
-				type: "object",
-				properties: {
-					Battles: {
-						type: "array",
-						items: {
-							$ref: "#/components/schemas/Battles",
-						},
-					},
-				},
-				xml: {
-					name: "Battles",
-				},
-			},
-			
-			Tipo_response: {
-				type: "object",
-				properties: {
-					Tipo: {
-						type: "array",
-						items: {
-							$ref: "#/components/schemas/Tipo",
-						},
-					},
-				},
-				xml: {
-					name: "Tipo",
-				},
-			},
-			
-			Teams_response: {
-				type: "object",
-				properties: {
-					Teams: {
-						type: "array",
-						items: {
-							$ref: "#/components/schemas/Teams",
-						},
-					},
-				},
-				xml: {
-					name: "Teams",
-				},
-			},
+      Battles_response: {
+        type: "object",
+        properties: {
+          Battles: {
+            type: "array",
+            items: {
+              $ref: "#/components/schemas/Battles",
+            },
+          },
+        },
+        xml: {
+          name: "Battles",
+        },
+      },
+      Tipo_response: {
+        type: "object",
+        properties: {
+          Tipo: {
+            type: "array",
+            items: {
+              $ref: "#/components/schemas/Tipo",
+            },
+          },
+        },
+        xml: {
+          name: "Tipo",
+        },
+        name: "Tipo",
+      },
     },
+    Teams_response: {
+      type: "object",
+      properties: {
+        Teams: {
+          type: "array",
+          items: {
+            $ref: "#/components/schemas/Teams",
+          },
+        },
+      },
+      xml: {
+        name: "Teams",
+      },
+    },
+  },
+
     securitySchemes: {
       OAuth2Security: {
         type: "oauth2",
@@ -1694,10 +1698,11 @@ const swaggerDefinition = {
             authorizationUrl: "https://github.com/login/oauth/authorize",
             tokenUrl: "https://github.com/login/oauth/access_token",
             scopes: [],
+            },
           },
         },
       },
-    },
+
   security: [{ OAuth2Security: [] }],
 };
 

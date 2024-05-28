@@ -28,7 +28,7 @@ router.get('/Trainer', TrainerController.retrieveTrainer);
 router.post('/Trainer', auth, TrainerController.createTrainer);
 
 router.get('/Trainer/:id_trainer', TrainerController.retrieveTrainerbyID);
-router.put('/Trainer/:id_trainer', auth, TrainerController.updateTrainerbyID);
+router.put('/Trainer/:id_trainer', auth, TrainerController.updateTrainer);
 router.delete('/Trainer/:id_trainer', auth, TrainerController.deleteTrainer);
 
 // ---------- BattleController ----------
@@ -53,7 +53,7 @@ router.delete('/Tipo/:id_tipo', auth, TipoController.deleteTipo);
 
 // ---------- TraineronTeamsController ----------
 
-router.get('/Trainer/:id/Team', TraineronTeamsController.retreiveTraineronTeams);
+router.get('/Teams/:id/Trainer', TraineronTeamsController.retrieveTrainerByTeamID);
 
 // ---------- AuthController ----------
 
