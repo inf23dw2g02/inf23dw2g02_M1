@@ -53,7 +53,7 @@ router.delete('/Tipo/:id_tipo', auth, TipoController.deleteTipo);
 
 // ---------- TraineronTeamsController ----------
 
-router.get('/Teams/:id/Trainer', TraineronTeamsController.retrieveTrainerByTeamID);
+router.get('/Trainer/:id/Team', TraineronTeamsController.retreiveTraineronTeams);
 
 // ---------- AuthController ----------
 

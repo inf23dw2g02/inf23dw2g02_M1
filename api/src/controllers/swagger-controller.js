@@ -7,15 +7,11 @@ const swaggerDefinition = {
   info: {
     title: "OAuth2 Digimon API",
     version: "1.0.0",
-    description: "API de Digimon desenvolvida pelo Grupo02 de Desenvolvimento Web II",
+    description:
+      "API de Digimon desenvolvida pelo Grupo02 de Desenvolvimento Web II",
     contact: { name: "inf-23-dw2-g02" },
   },
   servers: [{ url: "http://localhost:" + config.port }],
-  security: [
-    {
-      OAuth2Security: [],
-    },
-  ],
   paths: {
     "/Digimon/Count": {
       get: {
@@ -1104,7 +1100,7 @@ const swaggerDefinition = {
                 },
               },
               "application/xml": {
-                schema: { 
+                schema: {
                   $ref: "#/components/schemas/Teams_response",
                 },
               },
@@ -1264,7 +1260,7 @@ const swaggerDefinition = {
               examples: {
                 DigimonUpdate: {
                   $ref: "#/components/examples/TeamsInsert",
-                },  
+                },
                 TeamsExample01: {
                   $ref: "#/components/examples/TeamsExample01",
                 },
@@ -1336,9 +1332,6 @@ const swaggerDefinition = {
         "x-swagger-router-controller": "TeamsController",
       },
     },
-
-
-
 
     "/Teams/{id}/Trainer": {
       get: {
@@ -1434,15 +1427,15 @@ const swaggerDefinition = {
           tipo2: {
             type: "integer",
             format: "int64",
-            nullable: true
-          }
+            nullable: true,
+          },
         },
         additionalProperties: false,
         example: {
           id_digimon: 1,
           nome: "Agumon",
           tipo1: 1,
-          tipo2: 2
+          tipo2: 2,
         },
       },
       Tipo: {
@@ -1466,7 +1459,14 @@ const swaggerDefinition = {
       },
       Battles: {
         title: "Battles",
-        required: ["id_trainer1", "id_trainer2", "id_digimon1", "id_digimon2", "winner", "data"],
+        required: [
+          "id_trainer1",
+          "id_trainer2",
+          "id_digimon1",
+          "id_digimon2",
+          "winner",
+          "data",
+        ],
         type: "object",
         properties: {
           id_Battles: {
@@ -1560,7 +1560,7 @@ const swaggerDefinition = {
           id_digimon: 1,
           nome: "Agumon",
           tipo1: "Vaccine",
-          tipo2: "Fire"
+          tipo2: "Fire",
         },
       },
       DigimonExample02: {
@@ -1568,14 +1568,14 @@ const swaggerDefinition = {
           id_digimon: 2,
           nome: "Greymon",
           tipo1: "Vaccine",
-          tipo2: "Fire"
+          tipo2: "Fire",
         },
       },
       DigimonInsert: {
         value: {
           nome: "Digimon",
           tipo1: "Vaccine",
-          tipo2: "Fire"
+          tipo2: "Fire",
         },
       },
       BattlesExample01: {
@@ -1688,8 +1688,6 @@ const swaggerDefinition = {
         name: "Teams",
       },
     },
-  },
-
     securitySchemes: {
       OAuth2Security: {
         type: "oauth2",
@@ -1698,10 +1696,12 @@ const swaggerDefinition = {
             authorizationUrl: "https://github.com/login/oauth/authorize",
             tokenUrl: "https://github.com/login/oauth/access_token",
             scopes: [],
-            },
           },
         },
       },
+    },
+  },
+
 
   security: [{ OAuth2Security: [] }],
 };

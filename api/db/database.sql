@@ -38,10 +38,8 @@ CREATE TABLE `Team` (
   `id_team` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(512) NOT NULL,
   `id_trainer` int(11) DEFAULT NULL,
-  `id_digimon` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_team`),
-  FOREIGN KEY (`id_trainer`) REFERENCES `Trainer`(`id_trainer`),
-  FOREIGN KEY (`id_digimon`) REFERENCES `Digimon`(`id_digimon`)
+  FOREIGN KEY (`id_trainer`) REFERENCES `Trainer`(`id_trainer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -94,9 +92,9 @@ insert into `Trainer`(nome) values ("Trainer 3");
 
 
 
-insert into `Team` (nome, id_trainer, id_digimon) values ("Equipa 1", 1, 9);
-insert into `Team` (nome, id_trainer, id_digimon) values ("Equipa 2", 2, 6);
-insert into `Team` (nome, id_trainer, id_digimon) values ("Equipa 3", 3, 3);
+insert into `Team` (nome, id_trainer) values ("Equipa 1", 1);
+insert into `Team` (nome, id_trainer) values ("Equipa 2", 2);
+insert into `Team` (nome, id_trainer) values ("Equipa 3", 3);
 
 
 

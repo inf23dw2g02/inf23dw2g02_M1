@@ -25,17 +25,13 @@ const me = (req, res) => {
 };
 
 const gitHubMe = (req, res) => {
-    const token = req.user.token;
-    axios
-      .get("https://api.github.com/user", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then(function (response) {
-        res.json(response.data);
-      })
-      .catch(function (err) {
-        res.json(err);
-      });
-};
+  const token = req.user.token;
+  axios.get("https://api.github.com/user", {headers: { Authorization: `Bearer ${token}` } })
+  .then(function (response) {
+  res.json(response.data);
+  }).catch(function(err){
+  res.json(err);
+  });
+ };
 
 module.exports = {login, logout, protected, authGitHub, authCallback, me, gitHubMe};
