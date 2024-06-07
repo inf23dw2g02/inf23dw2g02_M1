@@ -16,7 +16,7 @@ const retrieveTrainer = (req, res) => {
 
 const createTrainer = (req, res) => {
   sql.query(
-    "INSERT INTO Trainer (nome) values (?)",
+    "INSERT INTO Trainer (id_trainer ,nome) values (?,?)",
     [req.body.nome],
     function (err, result) {
       if (err) throw err;

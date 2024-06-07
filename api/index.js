@@ -1,4 +1,3 @@
-
 const express = require("express");
 const cors = require("cors");
 const session = require("express-session");
@@ -10,13 +9,13 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./src/controllers/swagger-controller");
 const routes = require('./src/routes/Routes');
 
-const app = express();
 const sessionOptions = {
-  secret: "my top secret key",
+  secret: 'd1g1m0n',
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: true
 };
 
+const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -36,4 +35,3 @@ app.use('/', routes); //to use the routes
 app.listen(config.port, function () {
   console.log(`App running on http://localhost:${config.port}`);
 });
-

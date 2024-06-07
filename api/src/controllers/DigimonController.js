@@ -16,9 +16,12 @@ const retrieveDigimon = (req, res) => {
 
 const createDigimon = (req, res) => {
   sql.query(
-    "INSERT INTO Digimon (nome, tipo1, tipo2) VALUES (?,?,?)",
+    "INSERT INTO Digimon (id_digimon,nome, tipo1, tipo2) VALUES (?,?,?,?) where id_digimon= ?",
     [
-      req.body.name
+      req.body.name,
+      req.body.tipo1,
+      req.body.tipo2,
+      req.body.id_digimon
     ],
     function (err, result) {
       if (err) throw err;

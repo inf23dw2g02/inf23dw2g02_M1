@@ -1,5 +1,5 @@
 const auth = function (req, res, next) {
-  if (req.isAuthenticated()) {
+  if (req.isAuthenticated() || req.path === '/auth/github/callback') {
     return next();
   }
   res.redirect("/login");

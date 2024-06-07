@@ -62,8 +62,8 @@ router.get('/logout', AuthController.logout);
 router.get('/', auth, AuthController.protected);
 router.get('/auth/github', passport.authenticate("github", { scope: ["user:email"] }), AuthController.authGitHub);
 router.get('/auth/github/callback', passport.authenticate("github", { failureRedirect: "/login" }), AuthController.authCallback);
-router.get('/me',auth, AuthController.me);
-router.get('/githubme',auth, AuthController.gitHubMe);
+router.get('/me', auth, AuthController.me);
+router.get('/githubme', auth, AuthController.gitHubMe);
 
 
 module.exports = router;
