@@ -12,15 +12,13 @@ const passportOptions = {
 };
 
 // Serialization and Deserialization functions (required for persistent sessions)
-passport.serializeUser(function (user, done) {
-    done(null, user);
-});
+passport.serializeUser(function (user, done) { done(null, user); });
+passport.deserializeUser(function (user, done) { done(null, user); });
 
-passport.deserializeUser(function (user, done) {
-    done(null, user);
-});
+
   
-passport.use(new GitHubStrategy(passportOptions, function (accessToken, refreshToken, profile, done) {
+passport.use( new GitHubStrategy(passportOptions,
+    function ( accessToken, refreshToken, profile, done ) {
     /* FLOW #3 : accessToken and refreshToken are self explanatory;
     profile is the json result from GitHub which contains helpful information like id, username, mail, etc...
     We can decide to use profile.id as an internal UserID;
@@ -28,6 +26,7 @@ passport.use(new GitHubStrategy(passportOptions, function (accessToken, refreshT
     */
     profile.token = accessToken;
     return done(null, profile);
-}));
+    })
+   );
 
 module.exports = passport;

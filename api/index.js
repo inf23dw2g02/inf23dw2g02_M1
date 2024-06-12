@@ -25,7 +25,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + "/public"));
 
-
 app.get("/docs/swagger.json", (req, res) => res.json(swaggerSpec));
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 

@@ -7,15 +7,11 @@ const swaggerDefinition = {
   info: {
     title: "OAuth2 Digimon API",
     version: "1.0.0",
-    description: "API de Digimon desenvolvida pelo Grupo02 de Desenvolvimento Web II",
-    contact: { name: "inf-21-dw2-g02" },
+    description:
+      "API de Digimon desenvolvida pelo Grupo02 de Desenvolvimento Web II",
+    contact: { name: "inf-23-dw2-g02" },
   },
   servers: [{ url: "http://localhost:" + config.port }],
-  security: [
-    {
-      OAuth2Security: [],
-    },
-  ],
   paths: {
     "/Digimon/Count": {
       get: {
@@ -27,6 +23,7 @@ const swaggerDefinition = {
             description: "Number of Digimon model instances",
           },
         },
+        "x-swagger-router-controller": "DigimonController",
       },
     },
     "/Digimon": {
@@ -290,6 +287,7 @@ const swaggerDefinition = {
             description: "Number of Trainer model instances",
           },
         },
+        "x-swagger-router-controller": "TrainerController",
       },
     },
     "/Trainer": {
@@ -545,6 +543,7 @@ const swaggerDefinition = {
             description: "Number of Tipo model instances",
           },
         },
+        "x-swagger-router-controller": "TipoController",
       },
     },
     "/Tipo": {
@@ -811,6 +810,7 @@ const swaggerDefinition = {
             description: "Number of Battles model instances",
           },
         },
+        "x-swagger-router-controller": "BattlesController",
       },
     },
     "/Battles": {
@@ -1078,6 +1078,7 @@ const swaggerDefinition = {
             description: "Number of Teams model instances",
           },
         },
+        "x-swagger-router-controller": "TeamsController",
       },
     },
     "/Teams": {
@@ -1099,7 +1100,7 @@ const swaggerDefinition = {
                 },
               },
               "application/xml": {
-                schema: { 
+                schema: {
                   $ref: "#/components/schemas/Teams_response",
                 },
               },
@@ -1259,7 +1260,7 @@ const swaggerDefinition = {
               examples: {
                 DigimonUpdate: {
                   $ref: "#/components/examples/TeamsInsert",
-                },  
+                },
                 TeamsExample01: {
                   $ref: "#/components/examples/TeamsExample01",
                 },
@@ -1332,9 +1333,6 @@ const swaggerDefinition = {
       },
     },
 
-
-
-
     "/Teams/{id}/Trainer": {
       get: {
         tags: ["TrainerByTeamsController"],
@@ -1388,67 +1386,12 @@ const swaggerDefinition = {
         "x-swagger-router-controller": "TrainerByTeamsController",
       },
     },
-    "/Trainer/{id}/Teams": {
-      get: {
-        tags: ["TeamsByTrainerController"],
-        summary: "Retrieve Teams based on Trainer ID",
-        operationId: "retrieveTeamsOnTrainer",
-        parameters: [
-          {
-            name: "id",
-            in: "path",
-            required: true,
-            style: "simple",
-            explode: false,
-            schema: {
-              minimum: 1,
-              type: "integer",
-              format: "int64",
-            },
-            examples: {
-              one: {
-                summary: "Retrieve Teams id 1",
-                value: 1,
-              },
-              two: {
-                summary: "Retrieve Teams id 2",
-                value: 2,
-              },
-            },
-          },
-        ],
-        responses: {
-          200: {
-            description: "Array of Teams model instances by trainer",
-            content: {
-              "application/json": {
-                schema: {
-                  type: "array",
-                  items: {
-                    $ref: "#/components/schemas/Teams",
-                  },
-                  "x-content-type": "application/json",
-                },
-              },
-              "application/xml": {
-                schema: {
-                  $ref: "#/components/schemas/Digimon_response",
-                },
-              },
-            },
-          },
-        },
-        "x-swagger-router-controller": "TeamsByTrainerController",
-      },
-    },
   },
   components: {
     schemas: {
       Trainer: {
         title: "Trainer",
-        required: [
-          "nome",
-        ],
+        required: ["nome"],
         type: "object",
         properties: {
           id_trainer: {
@@ -1467,7 +1410,7 @@ const swaggerDefinition = {
       },
       Digimon: {
         title: "Digimon",
-        required: ["nome"], // Assuming 'nome' and 'tipo1' are required fields
+        required: ["nome", "tipo1"],
         type: "object",
         properties: {
           id_digimon: {
@@ -1484,15 +1427,15 @@ const swaggerDefinition = {
           tipo2: {
             type: "integer",
             format: "int64",
-            nullable: true // Assuming 'tipo2' can be null if not applicable
-          }
+            nullable: true,
+          },
         },
         additionalProperties: false,
         example: {
           id_digimon: 1,
           nome: "Agumon",
           tipo1: 1,
-          tipo2: 2
+          tipo2: 2,
         },
       },
       Tipo: {
@@ -1516,7 +1459,14 @@ const swaggerDefinition = {
       },
       Battles: {
         title: "Battles",
-        required: ["id_trainer1", "id_trainer2", "id_digimon1", "id_digimon2", "winner" ,"data"],
+        required: [
+          "id_trainer1",
+          "id_trainer2",
+          "id_digimon1",
+          "id_digimon2",
+          "winner",
+          "data",
+        ],
         type: "object",
         properties: {
           id_Battles: {
@@ -1536,7 +1486,7 @@ const swaggerDefinition = {
             format: "int64",
           },
           id_digimon2: {
-            type : "integer",
+            type: "integer",
             format: "int64",
           },
           winner: {
@@ -1556,7 +1506,6 @@ const swaggerDefinition = {
           id_digimon2: 2,
           winner: 1,
           data: "2024-05-05 18:00:00",
-         
         },
       },
       Digimon_response: {
@@ -1588,6 +1537,7 @@ const swaggerDefinition = {
         },
       },
     },
+    examples: {
       TrainerExample01: {
         value: {
           id_trainer: 1,
@@ -1610,7 +1560,7 @@ const swaggerDefinition = {
           id_digimon: 1,
           nome: "Agumon",
           tipo1: "Vaccine",
-          tipo2: "Fire"
+          tipo2: "Fire",
         },
       },
       DigimonExample02: {
@@ -1618,14 +1568,14 @@ const swaggerDefinition = {
           id_digimon: 2,
           nome: "Greymon",
           tipo1: "Vaccine",
-          tipo2: "Fire"
+          tipo2: "Fire",
         },
       },
       DigimonInsert: {
         value: {
           nome: "Digimon",
           tipo1: "Vaccine",
-          tipo2: "Fire"
+          tipo2: "Fire",
         },
       },
       BattlesExample01: {
@@ -1694,50 +1644,49 @@ const swaggerDefinition = {
           nome: "Teams",
         },
       },
-			Battles_response: {
-				type: "object",
-				properties: {
-					Battles: {
-						type: "array",
-						items: {
-							$ref: "#/components/schemas/Battles",
-						},
-					},
-				},
-				xml: {
-					name: "Battles",
-				},
-			},
-			
-			Tipo_response: {
-				type: "object",
-				properties: {
-					Tipo: {
-						type: "array",
-						items: {
-							$ref: "#/components/schemas/Tipo",
-						},
-					},
-				},
-				xml: {
-					name: "Tipo",
-				},
-			},
-			
-			Teams_response: {
-				type: "object",
-				properties: {
-					Teams: {
-						type: "array",
-						items: {
-							$ref: "#/components/schemas/Teams",
-						},
-					},
-				},
-				xml: {
-					name: "Teams",
-				},
-			},
+      Battles_response: {
+        type: "object",
+        properties: {
+          Battles: {
+            type: "array",
+            items: {
+              $ref: "#/components/schemas/Battles",
+            },
+          },
+        },
+        xml: {
+          name: "Battles",
+        },
+      },
+      Tipo_response: {
+        type: "object",
+        properties: {
+          Tipo: {
+            type: "array",
+            items: {
+              $ref: "#/components/schemas/Tipo",
+            },
+          },
+        },
+        xml: {
+          name: "Tipo",
+        },
+        name: "Tipo",
+      },
+    },
+    Teams_response: {
+      type: "object",
+      properties: {
+        Teams: {
+          type: "array",
+          items: {
+            $ref: "#/components/schemas/Teams",
+          },
+        },
+      },
+      xml: {
+        name: "Teams",
+      },
     },
     securitySchemes: {
       OAuth2Security: {
@@ -1751,6 +1700,9 @@ const swaggerDefinition = {
         },
       },
     },
+  },
+
+
   security: [{ OAuth2Security: [] }],
 };
 

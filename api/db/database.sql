@@ -29,6 +29,8 @@ DROP TABLE IF EXISTS `Trainer`;
 CREATE TABLE `Trainer` (
   `id_trainer` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(512) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `is_admin` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_trainer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -86,10 +88,9 @@ insert into `Digimon` (nome, tipo1, tipo2) values ("Bakemon", 3, 10);
 
 
 
-insert into `Trainer`(nome) values ("Trainer 1");
-insert into `Trainer`(nome) values ("Trainer 2");
-insert into `Trainer`(nome) values ("Trainer 3");
-
+insert into `Trainer`(nome, password, is_admin) values ("André", "Teste1", 1);
+insert into `Trainer`(nome, password, is_admin) values ("Hugo", "Teste2", 1);
+insert into `Trainer`(nome, password, is_admin) values ("Teste", "Banana", 0);
 
 
 insert into `Team` (nome, id_trainer) values ("Equipa 1", 1);
