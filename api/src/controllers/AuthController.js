@@ -14,9 +14,12 @@ const protected = (req, res) => {
     res.sendFile(path.join(__dirname, "..", "/public/protected.html"));
 };
 
-const authGitHub = (req, res) => {};
+const authGitHub = (req, res) => {
+    console.log("authGitHub");
+};
 
 const authCallback = (req, res) => {
+    console.log("authCallback");
     res.redirect("/");
 };
 
