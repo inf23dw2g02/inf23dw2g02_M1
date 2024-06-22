@@ -1,8 +1,8 @@
 const passport = require("passport");
 const GitHubStrategy = require("passport-github2").Strategy;
 
-const GITHUB_CLIENT_ID = "Ov23lixXE8wGAvKRDiOt";
-const GITHUB_CLIENT_SECRET = "ca5f3667a65729fcf778af1fd0e036ebd6cbf3e9";
+const GITHUB_CLIENT_ID = "Ov23lixvmjNoLLvJh1AG";
+const GITHUB_CLIENT_SECRET = "9653887fabbd01fe1b8834769ee403cd9e9a5ec5";
 const GITHUB_CALLBACK_URL = "http://localhost:3000/auth/github/callback";
 
 const passportOptions = {
