@@ -14,14 +14,15 @@ const retrieveDigimon = (req, res) => {
   });
 };
 
+// Ensure 'nome' field is not null when inserting a new Digimon
 const createDigimon = (req, res) => {
   sql.query(
-    "INSERT INTO Digimon (id_digimon,nome, tipo1, tipo2) VALUES (?,?,?,?) where id_digimon= ?",
+    "INSERT INTO Digimon (id_digimon, nome, tipo1, tipo2) VALUES (?, ?, ?, ?)",
     [
-      req.body.name,
+      req.body.id_digimon,
+      req.body.nome, // Change req.body.name to req.body.nome
       req.body.tipo1,
       req.body.tipo2,
-      req.body.id_digimon
     ],
     function (err, result) {
       if (err) throw err;

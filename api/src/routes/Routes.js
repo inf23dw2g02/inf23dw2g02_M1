@@ -43,9 +43,9 @@ router.delete('/Battle/:id_battle', auth, BattleController.deleteBattle);
 
 // ---------- TipoController ----------
 
-router.get('/Tipos/Count', TipoController.countTipo);
-router.get('/Tipos', TipoController.retrieveTipo);
-router.post('/Tipos', auth, TipoController.createTipo);
+router.get('/Tipo/Count', TipoController.countTipo);
+router.get('/Tipo', TipoController.retrieveTipo);
+router.post('/Tipo', auth, TipoController.createTipo);
 
 router.get('/Tipo/:id_tipo', TipoController.retrieveTipobyID);
 router.put('/Tipo/:id_tipo', auth, TipoController.updateTipobyID);
