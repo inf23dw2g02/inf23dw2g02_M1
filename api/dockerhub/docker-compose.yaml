@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   mysql:
-    image: n0rtenh0/m1_db:latest
+    image: n0rtenh0/inf23dw2g02:mysql
     container_name: Digimon_db
     restart: always
     environment:
@@ -12,7 +12,7 @@ services:
     ports:
       - 3306:3306
   app:
-    image: n0rtenh0/m1_app:latest
+    image: n0rtenh0/inf23dw2g02:app
     depends_on:
       - mysql
     container_name: digimon-app
